@@ -128,8 +128,9 @@ nav ul {
     white-space: nowrap; /* Keep items in one line */
     margin-top: 0.3rem;
     -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
-    width: 100%; /* Ensure full width for scrolling */
+    width: 100vw; /* Use viewport width for full scrollable area */
     box-sizing: border-box; /* Include padding in width */
+    padding-bottom: 1rem; /* Add space for scrolling indicator */
 }
 
 nav a {
@@ -141,10 +142,9 @@ nav a {
     border-radius: 5px;
     transition: background-color 0.3s, transform 0.3s;
     display: inline-block; /* Ensure inline behavior for scrolling */
-    min-width: 80px; /* Minimum width to ensure visibility */
+    min-width: 100px; /* Increased minimum width for better visibility */
     text-align: center; /* Center text within nav items */
 }
-
 nav a:hover {
     background-color: rgba(255, 255, 255, 0.2);
     transform: scale(1.05);
@@ -180,7 +180,6 @@ nav a:hover {
     transform: scale(1.05);
 }
 
-/* Sidebar */
 .sidebar {
     position: fixed;
     left: 0;
@@ -192,7 +191,7 @@ nav a:hover {
     overflow-y: auto;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
-    z-index: 50; /* Ensure it stays above content */
+    z-index: 51; /* Higher z-index to ensure visibility */
     display: block; /* Ensure visibility */
 }
 
@@ -259,7 +258,7 @@ main {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
-    margin-left: 240px; /* Increased offset for sidebar + space */
+    margin-left: 240px; /* Offset for sidebar + space */
     width: calc(100% - 240px); /* Center posts with space from sidebar */
 }
 
@@ -593,15 +592,17 @@ footer {
         width: 150px;
     }
     nav ul {
-        overflow-x: auto; /* Ensure horizontal scroll */
-        padding-bottom: 0.5rem; /* Add space for scrolling indicator */
+        width: 100vw; /* Full viewport width for scrolling */
+        padding-bottom: 1rem; /* Ensure scrolling indicator */
     }
     .sidebar {
         display: block; /* Ensure sidebar remains visible */
-        z-index: 51; /* Higher z-index to ensure visibility over content */
+        z-index: 51; /* Higher z-index */
+        overflow-x: visible; /* Prevent horizontal overflow issues */
     }
     main {
         margin-left: 240px; /* Maintain sidebar offset */
         width: calc(100% - 240px); /* Center posts on mobile */
     }
 }
+
