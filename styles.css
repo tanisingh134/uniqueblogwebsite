@@ -280,7 +280,7 @@ article img:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Prevent wrapping on mobile */
 }
 
 article .post-header h2 {
@@ -584,5 +584,16 @@ footer {
     }
     .newsletter input {
         width: 100%;
+    }
+    nav a {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.8rem;
+    }
+    .post-header {
+        flex-wrap: nowrap; /* Ensure horizontal layout */
+        justify-content: space-between;
+    }
+    .category-tag, .read-time, .likes, .like-btn {
+        margin: 0 0.5rem; /* Maintain spacing in row */
     }
 }
