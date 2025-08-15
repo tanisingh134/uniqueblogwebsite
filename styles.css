@@ -115,14 +115,18 @@ header h1 {
     font-weight: 900;
 }
 
+/* Header and Navigation */
 nav ul {
     list-style: none;
     padding: 0;
     display: flex;
     justify-content: center;
     gap: 0.8rem;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Prevent wrapping, allow horizontal scroll */
+    overflow-x: auto; /* Enable horizontal scrolling on mobile */
+    white-space: nowrap; /* Keep items in one line */
     margin-top: 0.3rem;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on mobile */
 }
 
 nav a {
@@ -133,6 +137,7 @@ nav a {
     padding: 0.4rem 1rem;
     border-radius: 5px;
     transition: background-color 0.3s, transform 0.3s;
+    display: inline-block; /* Ensure inline behavior for scrolling */
 }
 
 nav a:hover {
@@ -247,6 +252,7 @@ main {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
+    margin-left: 220px; /* Offset for fixed sidebar to prevent overlap */
 }
 
 article {
@@ -573,19 +579,13 @@ footer {
         width: 150px;
     }
     nav ul {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
+        overflow-x: auto; /* Ensure horizontal scroll on small screens */
     }
     .sidebar {
-        position: fixed;
-        left: 0;
-        top: 20%;
-        width: 200px;
-        height: calc(80% - 20px);
-        z-index: 50;
+        display: block; /* Ensure sidebar remains visible */
     }
     main {
-        margin-left: 220px;
+        margin-left: 220px; /* Maintain sidebar offset on mobile */
     }
 }
+
