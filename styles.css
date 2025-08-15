@@ -129,8 +129,8 @@ nav a {
     color: #fff;
     text-decoration: none;
     font-weight: 700;
-    font-size: 0.9rem;
-    padding: 0.3rem 0.8rem;
+    font-size: 1.1rem;
+    padding: 0.4rem 1rem;
     border-radius: 5px;
     transition: background-color 0.3s, transform 0.3s;
 }
@@ -151,7 +151,8 @@ nav a:hover {
     padding: 0.4rem;
     border: none;
     border-radius: 4px;
-    width: 180px;
+    width: 220px;
+    font-size: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -173,14 +174,15 @@ nav a:hover {
 .sidebar {
     position: fixed;
     left: 0;
-    top: 0;
+    top: 20%;
     width: 200px;
-    height: 100%;
+    height: calc(80% - 20px);
     background: rgba(255, 255, 255, 0.9);
     padding: 1.2rem;
     overflow-y: auto;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
+    z-index: 50; /* Ensure it stays above content */
 }
 
 body.dark-mode .sidebar {
@@ -195,22 +197,16 @@ body.dark-mode .sidebar {
     z-index: 30;
     padding: 0.6rem 0;
     font-weight: 700;
-    background: transparent;
-    color: #007bff;
-    -webkit-background-clip: unset;
-    background-clip: unset;
-    text-shadow: 0 0 3px rgba(255, 255, 255, 0.5); 
-    transition: all 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.7);
+    border-bottom: 1px solid #ccc;
+    text-shadow: 0 0 3px rgba(255, 255, 255, 1);
 }
 
 body.dark-mode .sidebar h2 {
     color: #eee;
-    background: transparent;
-    text-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-}
-
-.sidebar h2:hover {
-    letter-spacing: 1px;
+    background: rgba(30, 30, 30, 0.7);
+    border-bottom: 1px solid #555;
+    text-shadow: 0 0 3px rgba(0, 0, 0, 1);
 }
 
 .sidebar ul {
@@ -252,6 +248,7 @@ main {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2rem;
+    margin-left: 220px; /* Offset for fixed sidebar */
 }
 
 article {
@@ -285,7 +282,12 @@ article img:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap; /* Prevent wrapping on mobile */
+}
+
+article .post-header h2 {
+    font-size: 2.8rem !important;
+    margin: 0;
 }
 
 .category-tag {
@@ -312,6 +314,15 @@ article img:hover {
     margin-left: 1rem;
 }
 
+.ai-summary {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+    font-style: italic;
+    border-left: 3px solid #007bff;
+    padding-left: 0.5rem;
+}
+
 .like-btn {
     background: linear-gradient(to right, #ff4757, #ff6b81);
     color: #fff;
@@ -328,13 +339,7 @@ article img:hover {
 }
 
 .like-btn.liked {
-    animation: pop 0.3s forwards;
-}
-
-@keyframes pop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-    100% { transform: scale(1); }
+    transform: scale(1.2);
 }
 
 .post-content {
@@ -516,78 +521,62 @@ footer {
     transform: scale(1.05);
 }
 
+/* Global Box Sizing */
+* {
+    box-sizing: border-box;
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .sidebar {
-        /* Sidebar is now a static block at the top */
-        position: static;
-        width: 100%;
-        height: auto;
-        transform: translateX(0);
-        margin-bottom: 2rem;
-        box-shadow: none;
-        padding-top: 2rem; /* Add some space from the header */
+        transform: translateX(-200px);
     }
     main {
-        /* Main content takes full width on tablets */
-        padding: 0 1rem;
         margin: 2rem auto;
     }
-    header h1 {
-        font-size: 2rem;
+    nav a {
+        font-size: 1rem;
+        padding: 0.3rem 0.9rem;
+    }
+    article .post-header h2 {
+        font-size: 2.5rem !important;
+    }
+    #search-bar {
+        width: 200px;
     }
 }
 
 @media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
+    header h1 {
+        font-size: 2.2rem;
     }
-    .header-controls {
-        flex-direction: column;
+    nav a {
+        font-size: 0.95rem;
+        padding: 0.25rem 0.8rem;
+    }
+    article .post-header h2 {
+        font-size: 2.2rem !important;
     }
     #search-bar {
-        width: 80%;
-    }
-    article {
-        padding: 1rem;
-    }
-    .post-header {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    .read-time, .likes, .like-btn, .category-tag {
-        margin-left: 0;
-        margin-top: 0.5rem;
-    }
-    .newsletter form {
-        flex-direction: column;
-    }
-    .newsletter input {
-        width: 100%;
-    }
-    .sidebar {
-        /* On small phones, the sidebar becomes a compact, static element */
-        position: static;
-        width: 100%;
-        height: auto;
-        transform: translateX(0);
-        margin-bottom: 2rem;
-    }
-    main {
-        margin: 1rem auto;
-        padding: 0 1rem;
-    }
-    header h1 {
-        font-size: 1.5rem;
+        width: 180px;
     }
 }
 
 @media (max-width: 480px) {
-    main {
-        padding: 0 0.5rem;
+    header h1 {
+        font-size: 1.8rem;
     }
     nav a {
-        font-size: 0.8rem;
-        padding: 0.2rem 0.6rem;
+        font-size: 0.9rem;
+        padding: 0.2rem 0.7rem;
+    }
+    article .post-header h2 {
+        font-size: 2rem !important;
+    }
+    #search-bar {
+        width: 150px;
+    }
+    .newsletter input {
+        width: 150px;
     }
 }
